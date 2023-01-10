@@ -90,17 +90,57 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-
+  var passwordLength = prompt("Enter a number between 10 and 64 for the length of the password:");
 }
+console.log('')
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-
+  return arr[Math.floor(Math.random() * arr.length)];
 }
 
 // Function to generate password with user input
 function generatePassword() {
+  var passwordLength = parseInt(prompt("Enter a number between 10 and 64 for the length of the password:"));
 
+  if (passwordLength >= 10 && passwordLength <= 64) {
+    alert('Input is Correct!')
+
+    var includeSpecialCharacters = confirm("Would you like to include special characters in your password?");
+    var includeNumericCharacters = confirm("Would you like to include numeric characters in your password?");
+    var includeLowerCasedCharacters = confirm("Would you like to include lowercase characters in your password?");
+    var includeUpperCasedCharacters = confirm("Would you like to include uppercase characters in your password?");
+  } else {
+    alert("Password length must be between 10 and 64 characters. Please try again.");
+
+  }
+
+
+// if statements to go with user imput
+
+let mixedCharacters = [];
+if (includeSpecialCharacters) {
+  mixedCharacters = mixedCharacters.concat(specialCharacters)
+}
+if (includeNumericCharacters) {
+  mixedCharacters = mixedCharacters.concat(numericCharacters)
+}
+if (includeLowerCasedCharacters) {
+  mixedCharacters = mixedCharacters.concat(lowerCasedCharacters)
+}
+if (includeUpperCasedCharacters) {
+  mixedCharacters = mixedCharacters.concat(upperCasedCharacters)
+}
+console.log(mixedCharacters)
+
+var password = '';
+for (let i = 0; i < passwordLength; i += 1) {
+
+  password += (getRandom(mixedCharacters))
+
+}
+
+ return password;
 }
 
 // Get references to the #generate element
